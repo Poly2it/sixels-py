@@ -11,7 +11,7 @@ def main():
 
     execution_time = timeit.timeit(lambda: encode_image(image), number=5) / 5
     encoded_string = encode_image(image)
-    #image.getcolors()
+
     print(f"{min(len(image.getcolors()), 256)} colors, {image.width}*{image.height}: {round(execution_time, 4)}s")
     print(encoded_string)
 

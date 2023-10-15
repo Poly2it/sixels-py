@@ -3,32 +3,11 @@ This is my attempt at writing an efficient [sixel](https://en.wikipedia.org/wiki
 
 ![](docs/screenshot.png)
 
-## Improvements
-While I think I've managed to get this to be quite efficient for being a Pyhton program, I can't help but find myself a bit disappointed at the loss of performance when rendering transparent sixels. For a 1024x1024 image, you may be looking at a 50% longer conversion time. The reason for this loss is that the algorithm looks at every pixel during conversion, to check if the corresponding pixel on the original image has any alpha. An extra lookup for every pixel is not ideal, but it's the best I've managed to do. This could be optimized if we were able to remove the extra lookup by baking the alpha into the palette.
-
-```py
-    palette_image = image.convert("P", palette=Image.ADAPTIVE, colors=256)
-    # alpha is lost, but even if we extracted the alpha
-    # from another pass on the original image, we still wouldn't
-    # be able to bake it into a single palette, the palette will
-    # only be able hold three values for each colour anyway
-
-    # it might be possible to create a more sophisticated custom 
-    # converter, but I highly doubt it would bring any performance
-    # benefits in the end
-
-    palette = palette_image.getpalette()
-
-    palette = np.array(palette).reshape(256, 3)
-    
-    palette.tolist()
-```
-
 ## Sixel format
 During development of this project, I found myself increasinly frustrated by the lack of comprehendable documentation for the format. The format in of itself is quite simple, but it's easy to get lost at specifics, like transparency.
 
 
-<img style="width: 40pt; image-rendering: pixelated;" src="docs/example_sixel.png">  
+<img style="image-rendering: pixelated;" src="docs/example_sixel-96x.png">  
 
 ```
 \x1bPq1;1;"1;1;12;12$
