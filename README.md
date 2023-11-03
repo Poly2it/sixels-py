@@ -1,5 +1,5 @@
 # Sixels-Py
-This is my attempt at writing an efficient [sixel](https://en.wikipedia.org/wiki/Sixel) encoder in Python. It is fairly lightweight, and uses only PIL and numpy as external dependencies.
+This is my attempt at writing an efficient [sixel](https://en.wikipedia.org/wiki/Sixel) encoder in Python. It is fairly lightweight, and uses only PIL as a dependency.
 
 ![](docs/screenshot.png)
 
